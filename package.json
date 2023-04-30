@@ -1,0 +1,22 @@
+{
+  "name": "node-cmudict",
+  "version": "0.1.0",
+  "description": "Fetch and read cmusphinx/cmudict",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": "git@github.com:ducktrshessami/node-cmudict.git",
+  "author": "ducktrshessami",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsup",
+    "pretest": "yarn build",
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "@types/node": "^18.16.3",
+    "mocha": "^10.2.0",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.4"
+  }
+}
