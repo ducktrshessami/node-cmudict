@@ -301,6 +301,10 @@ cliui@^7.0.2:
     strip-ansi "^6.0.0"
     wrap-ansi "^7.0.0"
 
+cmudict@cmusphinx/cmudict:
+  version "0.0.0"
+  resolved "https://codeload.github.com/cmusphinx/cmudict/tar.gz/7cd8fb5b5a18058688f413e92282eb18815f1956"
+
 color-convert@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-2.0.1.tgz#72d3a68d598c9bdb3af2ad1e84f21d896abd4de3"
