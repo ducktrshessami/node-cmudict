@@ -3,7 +3,7 @@ import read from "./read";
 import { mapIt } from "./util";
 
 /**
- * Maps phone to manner of articulation
+ * Maps phoneme to manner of articulation
  */
 export const Phones = new Map<string, `${ArticulationManner}`>(
     mapIt(
