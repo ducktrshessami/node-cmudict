@@ -28,6 +28,10 @@ it("all phones' manners in ArticulationManner enum", function () {
     }
 });
 
+it("Phones covers all lines", function () {
+    assert.strictEqual(cmudict.Phones.size, lineCount("cmudict.phones"));
+});
+
 it("Symbols covers all lines", function () {
     assert.strictEqual(cmudict.Symbols.length, lineCount("cmudict.symbols"));
 });
