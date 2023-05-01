@@ -42,11 +42,8 @@ var ArticulationManner = /* @__PURE__ */ ((ArticulationManner2) => {
   return ArticulationManner2;
 })(ArticulationManner || {});
 
-// src/read.ts
+// src/util.ts
 var import_fs = require("fs");
-function read(filename) {
-  return (0, import_fs.readFileSync)(require.resolve(`cmudict/${filename}`), { encoding: "utf8" });
-}
 
 // src/entry.ts
 var Entry = class {
@@ -118,6 +115,9 @@ function mapIt(it, fn) {
     result.push(fn(value));
   }
   return result;
+}
+function read(filename) {
+  return (0, import_fs.readFileSync)(require.resolve(`cmudict/${filename}`), { encoding: "utf8" });
 }
 function readPronunciations(filename, pattern) {
   var _a, _b;
