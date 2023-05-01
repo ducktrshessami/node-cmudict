@@ -22,28 +22,12 @@ var src_exports = {};
 __export(src_exports, {
   ArticulationManner: () => ArticulationManner,
   Dict: () => Dict,
+  Entry: () => Entry,
   Phones: () => Phones,
   Symbols: () => Symbols,
   VP: () => VP
 });
 module.exports = __toCommonJS(src_exports);
-
-// src/phone.ts
-var PhonePattern = new RegExp("^(?<phoneme>[A-Z]+)\\s+(?<manner>[A-Z]+)$", "gmi");
-var ArticulationManner = /* @__PURE__ */ ((ArticulationManner2) => {
-  ArticulationManner2["Stop"] = "stop";
-  ArticulationManner2["Nasal"] = "nasal";
-  ArticulationManner2["Fricative"] = "fricative";
-  ArticulationManner2["Affricate"] = "affricate";
-  ArticulationManner2["Liquid"] = "liquid";
-  ArticulationManner2["Semivowel"] = "semivowel";
-  ArticulationManner2["Vowel"] = "vowel";
-  ArticulationManner2["Aspirate"] = "aspirate";
-  return ArticulationManner2;
-})(ArticulationManner || {});
-
-// src/util.ts
-var import_fs = require("fs");
 
 // src/entry.ts
 var Entry = class {
@@ -109,6 +93,18 @@ var Phoneme = _Phoneme;
 Phoneme.Pattern = new RegExp("^(?<phoneme>[A-Z]+)(?<stress>[0-2])?$", "i");
 
 // src/util.ts
+var import_fs = require("fs");
+var ArticulationManner = /* @__PURE__ */ ((ArticulationManner2) => {
+  ArticulationManner2["Stop"] = "stop";
+  ArticulationManner2["Nasal"] = "nasal";
+  ArticulationManner2["Fricative"] = "fricative";
+  ArticulationManner2["Affricate"] = "affricate";
+  ArticulationManner2["Liquid"] = "liquid";
+  ArticulationManner2["Semivowel"] = "semivowel";
+  ArticulationManner2["Vowel"] = "vowel";
+  ArticulationManner2["Aspirate"] = "aspirate";
+  return ArticulationManner2;
+})(ArticulationManner || {});
 function mapIt(it, fn) {
   const result = new Array();
   for (const value of it) {
@@ -134,6 +130,7 @@ function readPronunciations(filename, pattern) {
 // src/index.ts
 var WordPattern = new RegExp("^(?<name>[^\\s()]+)(?:\\((?<index>\\d+)\\))? (?<phonemes>(?:[A-Z]+[0-2]?(?:(?= #)| |$))+)(?: # (?<tags>(?:[^\\s,]+(?:, |$))+))?$", "gmi");
 var Dict = readPronunciations("cmudict.dict", WordPattern);
+var PhonePattern = new RegExp("^(?<phoneme>[A-Z]+)\\s+(?<manner>[A-Z]+)$", "gmi");
 var Phones = new Map(
   mapIt(
     read("cmudict.phones").matchAll(PhonePattern),
@@ -148,6 +145,7 @@ var VP = readPronunciations("cmudict.vp", VPPattern);
 0 && (module.exports = {
   ArticulationManner,
   Dict,
+  Entry,
   Phones,
   Symbols,
   VP
