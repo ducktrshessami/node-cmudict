@@ -1,5 +1,5 @@
 import { ArticulationManner, PhonePattern } from "./phone";
-import read from "./read";
+import { read } from "./util";
 import { mapIt, readPronunciations } from "./util";
 
 const WordPattern = /^(?<name>[^\s()]+)(?:\((?<index>\d+)\))? (?<phonemes>(?:[A-Z]+[0-2]?(?:(?= #)| |$))+)(?: # (?<tags>(?:[^\s,]+(?:, |$))+))?$/gmi;

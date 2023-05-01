@@ -1,5 +1,5 @@
+import { readFileSync } from "fs";
 import { Entry } from "./entry";
-import read from "./read";
 
 export function mapIt<T, R>(it: Iterable<T>, fn: (v: T) => R): Array<R> {
     const result = new Array<R>();
@@ -7,6 +7,10 @@ export function mapIt<T, R>(it: Iterable<T>, fn: (v: T) => R): Array<R> {
         result.push(fn(value));
     }
     return result;
+}
+
+export function read(filename: string): string {
+    return readFileSync(require.resolve(`cmudict/${filename}`), { encoding: "utf8" });
 }
 
 export function readPronunciations(filename: string, pattern: RegExp): Map<string, Entry> {
