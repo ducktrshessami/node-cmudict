@@ -14,6 +14,24 @@ export class Entry {
         this.pronunciations.push(newItem);
         return newItem;
     }
+
+    toString(): string {
+        if (this.tags && this.pronunciations.length) {
+            const first = this.pronunciations[0].toString() + ` # ${this.tags.join(", ")}`;
+            return [first, ...this.pronunciations.slice(1)].join("\n");
+        }
+        else {
+            return this.pronunciations.join("\n");
+        }
+    }
+
+    toJSON() {
+        return {
+            name: this.name,
+            pronunciations: this.pronunciations.map(pronunciation => pronunciation.toJSON()),
+            tags: this.tags
+        };
+    }
 }
 
 export class Pronunciation {
@@ -22,4 +40,19 @@ export class Pronunciation {
         readonly phonemes: Array<string>,
         readonly note: string | null = null
     ) { }
+
+    toString(): string {
+        return `${this.entry.name} ${this.phonemes.join(" ")}`;
+    }
+
+    toJSON() {
+        const json: {
+            phonemes: Array<string>;
+            note?: string
+        } = { phonemes: this.phonemes };
+        if (this.note) {
+            json.note = this.note;
+        }
+        return json;
+    }
 }
