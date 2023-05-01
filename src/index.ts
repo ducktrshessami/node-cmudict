@@ -10,7 +10,7 @@ import {
     readPronunciations
 } from "./util";
 
-const WordPattern = /^(?<name>[^\s()]+)(?:\((?<index>\d+)\))? (?<phonemes>(?:[A-Z]+[0-2]?(?:(?= #)| |$))+)(?: # (?<tags>(?:[^\s,]+(?:, |$))+))?$/gmi;
+const WordPattern = /^(?<name>[^\s()]+)(?:\((?<index>\d+)\))? (?<phonemes>(?:[A-Z]+[0-2]?(?:(?= #)| |$))+)(?: # (?<tags>(?:[^\s,]+(?:$|[\s,]+))+))?$/gmi;
 export const Dict = readPronunciations("cmudict.dict", WordPattern);
 
 const PhonePattern = /^(?<phoneme>[A-Z]+)\s+(?<manner>[A-Z]+)$/gmi;
