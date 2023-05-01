@@ -37,11 +37,15 @@ export class Entry {
 }
 
 export class Pronunciation {
+    readonly phonemes: Array<Phoneme>;
+
     constructor(
         readonly entry: Entry,
-        readonly phonemes: Array<string>,
+        phonemes: Array<string>,
         readonly note: string | null = null
-    ) { }
+    ) {
+        this.phonemes = phonemes.map(phoneme => new Phoneme(phoneme));
+    }
 
     toString(): string {
         return `${this.entry.name} ${this.phonemes.join(" ")}`;
@@ -51,10 +55,26 @@ export class Pronunciation {
         const json: {
             phonemes: Array<string>;
             note?: string
-        } = { phonemes: this.phonemes };
+        } = { phonemes: this.phonemes.map(phoneme => phoneme.toString()) };
         if (this.note) {
             json.note = this.note;
         }
         return json;
+    }
+}
+
+export class Phoneme {
+    private static readonly Pattern = /^(?<phoneme>[A-Z]+)(?<stress>[0-2])?$/i;
+    readonly phoneme: string;
+    readonly stress: number | null;
+
+    constructor(readonly raw: string) {
+        const match = raw.match(Phoneme.Pattern)!;
+        this.phoneme = match.groups!.phoneme;
+        this.stress = match.groups!.stress ? parseInt(match.groups!.stress) : null;
+    }
+
+    toString(): string {
+        return this.raw;
     }
 }
