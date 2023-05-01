@@ -2,14 +2,14 @@ const assert = require("assert");
 const cmudict = require("../dist");
 const { readFileSync } = require("fs");
 
-function expectedPronunciationCount(filename) {
+function lineCount(filename) {
     return readFileSync(require.resolve(`cmudict/${filename}`), { encoding: "utf8" })
         .split("\n")
         .filter(line => line)
         .length;
 }
 
-function actualPronunciationCount(map) {
+function pronunciationCount(map) {
     let pronunciations = 0;
     for (const entry of map.values()) {
         pronunciations += entry.pronunciations.length;
@@ -18,7 +18,7 @@ function actualPronunciationCount(map) {
 }
 
 it("Dict covers all lines", function () {
-    assert.strictEqual(actualPronunciationCount(cmudict.Dict), expectedPronunciationCount("cmudict.dict"));
+    assert.strictEqual(pronunciationCount(cmudict.Dict), lineCount("cmudict.dict"));
 });
 
 it("all phones' manners in ArticulationManner enum", function () {
@@ -28,6 +28,10 @@ it("all phones' manners in ArticulationManner enum", function () {
     }
 });
 
+it("Symbols covers all lines", function () {
+    assert.strictEqual(cmudict.Symbols.length, lineCount("cmudict.symbols"));
+});
+
 it("VP covers all lines", function () {
-    assert.strictEqual(actualPronunciationCount(cmudict.VP), expectedPronunciationCount("cmudict.vp"));
+    assert.strictEqual(pronunciationCount(cmudict.VP), lineCount("cmudict.vp"));
 });
