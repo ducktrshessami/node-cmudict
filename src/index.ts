@@ -1,7 +1,6 @@
-import { Entry } from "./entry";
 import { ArticulationManner, PhonePattern } from "./phone";
 import read from "./read";
-import { mapIt } from "./util";
+import { mapIt, readPronunciations } from "./util";
 
 /**
  * Maps phoneme to manner of articulation
@@ -20,10 +19,5 @@ export const Symbols: Array<string> = read("cmudict.symbols")
     .match(SymbolPattern)!;
 
 // WTF does 'vp' mean?
-const VPPattern = /^(?<name>[^A-Z\s]+)(?<note>[^\s()]+)?(?:\((?<index>\d+)\))? (?<phonemes>(?:[A-Z]+[0-2]?(?: |$))+)/mgi;
-export const VP = new Map<string, Entry>();
-for (const match of read("cmudict.vp").matchAll(VPPattern)) {
-    const entry = VP.get(match.groups!.name) ?? new Entry(match.groups!.name);
-    entry.addPronunciation(match.groups!.phonemes.split(" "), match.groups!.note);
-    VP.set(entry.name, entry);
-}
+const VPPattern = /^(?<name>[^A-Z\s]+)(?<note>[^\s()]+)?(?:\((?<index>\d+)\))? (?<phonemes>(?:[A-Z]+[0-2]?(?: |$))+)/gmi;
+export const VP = readPronunciations("cmudict.vp", VPPattern);
