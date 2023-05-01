@@ -1,25 +1,18 @@
-import {
-    ArticulationManner,
-    Phone,
-    PhonePattern
-} from "./phone";
+import { ArticulationManner, PhonePattern } from "./phone";
 import read from "./read";
 import { mapIt } from "./util";
 
-export const Phones = new Map<string, Phone>(
+/**
+ * Maps phone to manner of articulation
+ */
+export const Phones = new Map<string, `${ArticulationManner}`>(
     mapIt(
         read("cmudict.phones")
             .matchAll(PhonePattern),
-        match => {
-            const phone: Phone = {
-                phoneme: match[1],
-                manner: <`${ArticulationManner}`>match[2]
-            };
-            return [phone.phoneme, phone];
-        }
+        match => [match[1], <`${ArticulationManner}`>match[2]]
     )
 );
-export { ArticulationManner, Phone };
+export { ArticulationManner };
 
 const SymbolPattern = /^\S+$/gm;
 export const Symbols: Array<string> = read("cmudict.symbols")

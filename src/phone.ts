@@ -9,7 +9,3 @@ export enum ArticulationManner {
     Vowel = "vowel",
     Aspirate = "aspirate"
 }
-export interface Phone {
-    readonly phoneme: string;
-    readonly manner: `${ArticulationManner}`;
-}
