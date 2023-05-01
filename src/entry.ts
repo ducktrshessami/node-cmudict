@@ -1,16 +1,16 @@
 export class Entry {
     readonly pronunciations: Array<Pronunciation>;
 
-    constructor(
-        readonly name: string,
-        pronunciation: Array<string>,
-        readonly tags: Array<string> = []
-    ) {
-        this.pronunciations = [new Pronunciation(this, pronunciation)];
+    constructor(readonly name: string, readonly tags: Array<string> = []) {
+        this.pronunciations = [];
     }
 
-    addPronunciation(pronunciation: Array<string>): Pronunciation {
-        const newItem = new Pronunciation(this, pronunciation);
+    addPronunciation(pronunciation: Array<string>, note?: string): Pronunciation {
+        const newItem = new Pronunciation(
+            this,
+            pronunciation,
+            note
+        );
         this.pronunciations.push(newItem);
         return newItem;
     }
