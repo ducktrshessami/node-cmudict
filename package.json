@@ -1,7 +1,7 @@
 {
   "name": "node-cmudict",
   "version": "0.1.0",
-  "description": "Fetch and read cmusphinx/cmudict",
+  "description": "cmusphinx/cmudict wrapper",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "git@github.com:ducktrshessami/node-cmudict.git",
