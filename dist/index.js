@@ -128,7 +128,7 @@ function readPronunciations(filename, pattern) {
 }
 
 // src/index.ts
-var WordPattern = new RegExp("^(?<name>[^\\s()]+)(?:\\((?<index>\\d+)\\))? (?<phonemes>(?:[A-Z]+[0-2]?(?:(?= #)| |$))+)(?: # (?<tags>(?:[^\\s,]+(?:, |$))+))?$", "gmi");
+var WordPattern = new RegExp("^(?<name>[^\\s()]+)(?:\\((?<index>\\d+)\\))? (?<phonemes>(?:[A-Z]+[0-2]?(?:(?= #)| |$))+)(?: # (?<tags>(?:[^\\s,]+(?:$|[\\s,]+))+))?$", "gmi");
 var Dict = readPronunciations("cmudict.dict", WordPattern);
 var PhonePattern = new RegExp("^(?<phoneme>[A-Z]+)\\s+(?<manner>[A-Z]+)$", "gmi");
 var Phones = new Map(
