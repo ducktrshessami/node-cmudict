@@ -1,6 +1,17 @@
 import { readFileSync } from "fs";
 import { Entry } from "./entry";
 
+export enum ArticulationManner {
+    Stop = "stop",
+    Nasal = "nasal",
+    Fricative = "fricative",
+    Affricate = "affricate",
+    Liquid = "liquid",
+    Semivowel = "semivowel",
+    Vowel = "vowel",
+    Aspirate = "aspirate"
+}
+
 export function mapIt<T, R>(it: Iterable<T>, fn: (v: T) => R): Array<R> {
     const result = new Array<R>();
     for (const value of it) {
