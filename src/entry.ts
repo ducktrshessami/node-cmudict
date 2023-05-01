@@ -1,8 +1,10 @@
 export class Entry {
     readonly pronunciations: Array<Pronunciation>;
+    readonly tags: Set<string>;
 
-    constructor(readonly name: string, readonly tags: Array<string> = []) {
+    constructor(readonly name: string, tags: Iterable<string> = []) {
         this.pronunciations = [];
+        this.tags = new Set<string>(tags);
     }
 
     addPronunciation(pronunciation: Array<string>, note?: string): Pronunciation {
@@ -17,7 +19,7 @@ export class Entry {
 
     toString(): string {
         if (this.tags && this.pronunciations.length) {
-            const first = this.pronunciations[0].toString() + ` # ${this.tags.join(", ")}`;
+            const first = this.pronunciations[0].toString() + ` # ${[...this.tags.values()].join(", ")}`;
             return [first, ...this.pronunciations.slice(1)].join("\n");
         }
         else {
