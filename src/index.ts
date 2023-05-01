@@ -2,6 +2,9 @@ import { ArticulationManner, PhonePattern } from "./phone";
 import read from "./read";
 import { mapIt, readPronunciations } from "./util";
 
+const WordPattern = /^(?<name>[^\s()]+)(?:\((?<index>\d+)\))? (?<phonemes>(?:[A-Z]+[0-2]?(?:(?= #)| |$))+)(?: # (?<tags>(?:[^\s,]+(?:, |$))+))?$/gmi;
+export const Dict = readPronunciations("cmudict.dict", WordPattern);
+
 /**
  * Maps phoneme to manner of articulation
  */
