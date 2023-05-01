@@ -31,7 +31,7 @@ export class Entry {
         return {
             name: this.name,
             pronunciations: this.pronunciations.map(pronunciation => pronunciation.toJSON()),
-            tags: this.tags
+            tags: [...this.tags.values()]
         };
     }
 }
