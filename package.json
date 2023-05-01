@@ -1,5 +1,5 @@
 {
-  "name": "node-cmudict",
+  "name": "cmudict",
   "version": "0.1.0",
   "description": "cmusphinx/cmudict wrapper",
   "main": "dist/index.js",
