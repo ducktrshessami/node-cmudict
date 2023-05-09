@@ -1,9 +1,9 @@
 declare class Entry {
     readonly name: string;
-    readonly pronunciations: Array<Pronunciation$1>;
+    readonly pronunciations: Array<Pronunciation>;
     readonly tags: Set<string>;
     constructor(name: string, tags?: Iterable<string>);
-    addPronunciation(pronunciation: Array<string>, note?: string): Pronunciation$1;
+    addPronunciation(pronunciation: Array<string>, note?: string): Pronunciation;
     toString(): string;
     toJSON(): {
         name: string;
@@ -14,10 +14,10 @@ declare class Entry {
         tags: string[];
     };
 }
-declare class Pronunciation$1 {
+declare class Pronunciation {
     readonly entry: Entry;
     readonly note: string | null;
-    readonly phonemes: Array<Phoneme$1>;
+    readonly phonemes: Array<Phoneme>;
     constructor(entry: Entry, phonemes: Array<string>, note?: string | null);
     toString(): string;
     toJSON(): {
@@ -25,7 +25,7 @@ declare class Pronunciation$1 {
         note?: string | undefined;
     };
 }
-declare class Phoneme$1 {
+declare class Phoneme {
     readonly raw: string;
     private static readonly Pattern;
     readonly phoneme: string;
@@ -52,7 +52,5 @@ declare const Dict: Map<string, Entry>;
 declare const Phones: Map<string, "stop" | "nasal" | "fricative" | "affricate" | "liquid" | "semivowel" | "vowel" | "aspirate">;
 declare const Symbols: Array<string>;
 declare const VP: Map<string, Entry>;
-type Pronunciation = Pronunciation$1;
-type Phoneme = Phoneme$1;
 
 export { ArticulationManner, Dict, Entry, Phoneme, Phones, Pronunciation, Symbols, VP };
