@@ -16,7 +16,7 @@
     "cmudict": "cmusphinx/cmudict"
   },
   "devDependencies": {
-    "@types/node": "^18.16.3",
+    "@types/node": "^20.1.1",
     "mocha": "^10.2.0",
     "tsup": "^6.7.0",
     "typescript": "^5.0.4"
