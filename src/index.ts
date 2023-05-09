@@ -1,8 +1,4 @@
-import {
-    Entry,
-    Phoneme as Phone,
-    Pronunciation as Pronounce
-} from "./entry";
+import { Entry } from "./entry";
 import {
     ArticulationManner,
     mapIt,
@@ -33,6 +29,5 @@ export const Symbols: Array<string> = read("cmudict.symbols")
 const VPPattern = /^(?<name>[^A-Z\s]+)(?<note>[^\s()]+)?(?:\((?<index>\d+)\))? (?<phonemes>(?:[A-Z]+[0-2]?(?: |$))+)/gmi;
 export const VP = readPronunciations("cmudict.vp", VPPattern);
 
-export type Pronunciation = Pronounce;
-export type Phoneme = Phone;
 export { ArticulationManner, Entry };
+export { Phoneme, Pronunciation } from "./entry";
