@@ -9,16 +9,13 @@
   "license": "MIT",
   "scripts": {
     "build": "tsup",
-    "pretest": "yarn build",
+    "pretest": "npm run build",
     "test": "mocha"
   },
-  "dependencies": {
-    "cmudict": "cmusphinx/cmudict"
-  },
   "devDependencies": {
-    "@types/node": "^20.3.3",
-    "mocha": "^10.2.0",
-    "tsup": "^7.1.0",
-    "typescript": "^5.1.6"
+    "@types/node": "^20.11.17",
+    "mocha": "^10.3.0",
+    "tsup": "^7.2.0",
+    "typescript": "^5.3.3"
   }
 }
