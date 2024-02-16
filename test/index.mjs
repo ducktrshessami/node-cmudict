@@ -1,10 +1,9 @@
-const assert = require("assert");
-const { readFileSync } = require("fs");
-const { join } = require("path");
-const cmudict = require("../dist");
+import assert from "assert";
+import { readFileSync } from "fs";
+import * as cmudict from "../dist/index.mjs";
 
 function lineCount(filename) {
-    return readFileSync(join(__dirname, "../dist/cmudict", filename), { encoding: "utf8" })
+    return readFileSync(new URL(`../dist/cmudict/${filename}`, import.meta.url), { encoding: "utf8" })
         .split("\n")
         .filter(line => line)
         .length;
@@ -18,7 +17,7 @@ function pronunciationCount(map) {
     return pronunciations;
 }
 
-describe("CJS", function () {
+describe("ESM", function () {
     it("Dict covers all lines", function () {
         assert.strictEqual(pronunciationCount(cmudict.Dict), lineCount("cmudict.dict"));
     });
