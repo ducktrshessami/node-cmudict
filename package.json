@@ -24,7 +24,6 @@
     "types": "./dist/index.d.ts"
   },
   "dependencies": {
-    "rimraf": "^5.0.5",
     "tar-fs": "^3.0.5"
   },
   "devDependencies": {
