@@ -45,12 +45,12 @@ declare enum ArticulationManner {
     Aspirate = "aspirate"
 }
 
-declare const Dict: Map<string, Entry>;
+declare function getDict(): Map<string, Entry>;
 /**
  * Maps phoneme to manner of articulation
  */
-declare const Phones: Map<string, "stop" | "nasal" | "fricative" | "affricate" | "liquid" | "semivowel" | "vowel" | "aspirate">;
-declare const Symbols: Array<string>;
-declare const VP: Map<string, Entry>;
+declare function getPhones(): Map<string, `${ArticulationManner}`>;
+declare function getSymbols(): string[];
+declare function getVP(): Map<string, Entry>;
 
-export { ArticulationManner, Dict, Entry, Phoneme, Phones, Pronunciation, Symbols, VP };
+export { ArticulationManner, Entry, Phoneme, Pronunciation, getDict, getPhones, getSymbols, getVP };
