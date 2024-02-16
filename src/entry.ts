@@ -1,5 +1,5 @@
 export class Entry {
-    readonly pronunciations: Array<Pronunciation>;
+    readonly pronunciations: Pronunciation[];
     readonly tags: Set<string>;
 
     constructor(readonly name: string, tags: Iterable<string> = []) {
@@ -7,7 +7,7 @@ export class Entry {
         this.tags = new Set<string>(tags);
     }
 
-    addPronunciation(pronunciation: Array<string>, note?: string): Pronunciation {
+    addPronunciation(pronunciation: string[], note?: string): Pronunciation {
         const newItem = new Pronunciation(
             this,
             pronunciation,
@@ -37,11 +37,11 @@ export class Entry {
 }
 
 export class Pronunciation {
-    readonly phonemes: Array<Phoneme>;
+    readonly phonemes: Phoneme[];
 
     constructor(
         readonly entry: Entry,
-        phonemes: Array<string>,
+        phonemes: string[],
         readonly note: string | null = null
     ) {
         this.phonemes = phonemes.map(phoneme => new Phoneme(phoneme));
@@ -53,7 +53,7 @@ export class Pronunciation {
 
     toJSON() {
         const json: {
-            phonemes: Array<string>;
+            phonemes: string[];
             note?: string
         } = { phonemes: this.phonemes.map(phoneme => phoneme.toString()) };
         if (this.note) {

@@ -26,8 +26,8 @@ export enum ArticulationManner {
     Aspirate = "aspirate"
 }
 
-export function mapIt<T, R>(it: Iterable<T>, fn: (v: T) => R): Array<R> {
-    const result = new Array<R>();
+export function mapIt<T, R>(it: Iterable<T>, fn: (v: T) => R): R[] {
+    const result: R[] = [];
     for (const value of it) {
         result.push(fn(value));
     }
