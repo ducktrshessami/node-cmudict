@@ -16,4 +16,4 @@ jobs:
     - name: install
       run: npm ci --ignore-scripts
     - name: build and test
-      run: npm run test
+      run: npm test
