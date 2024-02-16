@@ -4,12 +4,18 @@
 ## Usage
 ```js
 const {
-    Dict,
-    Phones,
-    Symbols,
-    VP,
-    Entry
+    Entry,
+    getDict,
+    getPhones,
+    getSymbols,
+    getVP
 } = require("node-cmudict");
+
+// Read cmusphinx/cmudict
+const Dict = getDict();
+const Phones = getPhones();
+const Symbols = getSymbols();
+const VP = getVP();
 
 // Get word pronunciation
 const entry = Dict.get("syllables");
