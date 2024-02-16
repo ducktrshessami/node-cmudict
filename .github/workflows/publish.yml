@@ -18,7 +18,7 @@ jobs:
         git config user.name "$GITHUB_ACTOR"
         git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
     - name: install
-      run: npm ci
+      run: npm ci --ignore-scripts
     - name: build and test
       run: npm run test
     - name: branch
