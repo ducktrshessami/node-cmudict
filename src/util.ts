@@ -1,5 +1,19 @@
 import { readFileSync } from "fs";
+import { join } from "path";
+import { fileURLToPath } from "url";
 import { Entry } from "./entry";
+
+function getDirname(): string {
+    try {
+        return __dirname;
+    }
+    catch {
+        // @ts-expect-error
+        return fileURLToPath(new URL("./", import.meta.url));
+    }
+}
+
+export const CMUdictPath = join(getDirname(), "cmudict");
 
 export enum ArticulationManner {
     Stop = "stop",
@@ -21,7 +35,7 @@ export function mapIt<T, R>(it: Iterable<T>, fn: (v: T) => R): Array<R> {
 }
 
 export function read(filename: string): string {
-    return readFileSync(require.resolve(`cmudict/${filename}`), { encoding: "utf8" });
+    return readFileSync(join(CMUdictPath, filename), { encoding: "utf8" });
 }
 
 export function readPronunciations(filename: string, pattern: RegExp): Map<string, Entry> {
