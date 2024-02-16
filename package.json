@@ -8,17 +8,25 @@
   "author": "ducktrshessami",
   "license": "MIT",
   "scripts": {
-    "build": "tsup",
-    "pretest": "yarn build",
+    "postinstall": "node dist/install.mjs",
+    "build:main": "tsup src/index.ts",
+    "build:install": "tsup src/install.mts",
+    "build": "rm -rf dist/ && npm run build:main && npm run build:install",
+    "pretest": "npm run build && npm rebuild",
     "test": "mocha"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
-    "cmudict": "cmusphinx/cmudict"
+    "rimraf": "^5.0.5",
+    "tar-fs": "^3.0.5"
   },
   "devDependencies": {
-    "@types/node": "^20.3.3",
-    "mocha": "^10.2.0",
-    "tsup": "^7.1.0",
-    "typescript": "^5.1.6"
+    "@types/node": "^20.11.19",
+    "@types/tar-fs": "^2.0.4",
+    "mocha": "^10.3.0",
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3"
   }
 }
