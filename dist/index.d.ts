@@ -1,9 +1,9 @@
 declare class Entry {
     readonly name: string;
-    readonly pronunciations: Array<Pronunciation>;
+    readonly pronunciations: Pronunciation[];
     readonly tags: Set<string>;
     constructor(name: string, tags?: Iterable<string>);
-    addPronunciation(pronunciation: Array<string>, note?: string): Pronunciation;
+    addPronunciation(pronunciation: string[], note?: string): Pronunciation;
     toString(): string;
     toJSON(): {
         name: string;
@@ -17,11 +17,11 @@ declare class Entry {
 declare class Pronunciation {
     readonly entry: Entry;
     readonly note: string | null;
-    readonly phonemes: Array<Phoneme>;
-    constructor(entry: Entry, phonemes: Array<string>, note?: string | null);
+    readonly phonemes: Phoneme[];
+    constructor(entry: Entry, phonemes: string[], note?: string | null);
     toString(): string;
     toJSON(): {
-        phonemes: Array<string>;
+        phonemes: string[];
         note?: string | undefined;
     };
 }
