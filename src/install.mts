@@ -17,12 +17,15 @@ function flattenTar(header: Headers): Headers {
     return header;
 }
 
+console.debug("Fetching cmusphinx/cmudict");
 const res = await fetch(CMUdictURL);
 if (!res.ok) {
     throw new InstallError(`Failed to fetch cmusphinx/cmudict: ${res.status} ${res.statusText}`);
 }
+console.debug("Cleaning ./cmudict");
 rimrafSync(CMUdictPath);
 const reader = Readable.fromWeb(res.body as ReadableStream);
 const gz = createGunzip();
 const output = extract(CMUdictPath, { map: flattenTar });
+console.debug("Writing to ./cmudict");
 await pipeline(reader, gz, output);
