@@ -13,7 +13,7 @@ function getDirname(): string {
     }
 }
 
-export const CMUdictPath = join(getDirname(), "cmudict");
+export const CMUdictPath = join(getDirname(), "../cmudict");
 
 export enum ArticulationManner {
     Stop = "stop",

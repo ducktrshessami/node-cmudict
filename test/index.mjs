@@ -3,7 +3,7 @@ import { readFileSync } from "fs";
 import * as cmudict from "../dist/index.mjs";
 
 function lineCount(filename) {
-    return readFileSync(new URL(`../dist/cmudict/${filename}`, import.meta.url), { encoding: "utf8" })
+    return readFileSync(new URL(`../cmudict/${filename}`, import.meta.url), { encoding: "utf8" })
         .split("\n")
         .filter(line => line)
         .length;

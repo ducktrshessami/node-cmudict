@@ -4,7 +4,7 @@ const { join } = require("path");
 const cmudict = require("../dist");
 
 function lineCount(filename) {
-    return readFileSync(join(__dirname, "../dist/cmudict", filename), { encoding: "utf8" })
+    return readFileSync(join(__dirname, "../cmudict", filename), { encoding: "utf8" })
         .split("\n")
         .filter(line => line)
         .length;
