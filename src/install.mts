@@ -1,4 +1,3 @@
-import { rimrafSync } from "rimraf";
 import { Readable } from "stream";
 import { pipeline } from "stream/promises";
 import { ReadableStream } from "stream/web";
@@ -22,8 +21,6 @@ const res = await fetch(CMUdictURL);
 if (!res.ok) {
     throw new InstallError(`Failed to fetch cmusphinx/cmudict: ${res.status} ${res.statusText}`);
 }
-console.debug("Cleaning ./cmudict");
-rimrafSync(CMUdictPath);
 const reader = Readable.fromWeb(res.body as ReadableStream);
 const gz = createGunzip();
 const output = extract(CMUdictPath, { map: flattenTar });
