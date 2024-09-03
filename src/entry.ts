@@ -1,3 +1,14 @@
+export interface PronunciationData {
+    phonemes: string[];
+    note?: string;
+}
+
+export interface EntryData {
+    name: string;
+    pronunciations: PronunciationData[];
+    tags: string[];
+}
+
 export class Entry {
     readonly pronunciations: Pronunciation[];
     readonly tags: Set<string>;
@@ -27,7 +38,7 @@ export class Entry {
         }
     }
 
-    toJSON() {
+    toJSON(): EntryData {
         return {
             name: this.name,
             pronunciations: this.pronunciations.map(pronunciation => pronunciation.toJSON()),
@@ -51,11 +62,8 @@ export class Pronunciation {
         return `${this.entry.name} ${this.phonemes.join(" ")}`;
     }
 
-    toJSON() {
-        const json: {
-            phonemes: string[];
-            note?: string;
-        } = { phonemes: this.phonemes.map(phoneme => phoneme.toString()) };
+    toJSON(): PronunciationData {
+        const json: PronunciationData = { phonemes: this.phonemes.map(phoneme => phoneme.toString()) };
         if (this.note) {
             json.note = this.note;
         }
