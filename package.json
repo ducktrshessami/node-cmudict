@@ -12,7 +12,7 @@
     "build:main": "tsup src/index.ts",
     "build:install": "tsup src/install.mts",
     "build": "rm -rf dist/ && yarn build:main && yarn build:install",
-    "pretest": "yarn build && yarn rebuild",
+    "pretest": "yarn build && yarn --immutable",
     "test": "mocha"
   },
   "engines": {
