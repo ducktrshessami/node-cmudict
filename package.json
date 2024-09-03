@@ -19,9 +19,9 @@
     "node": ">=18.0.0"
   },
   "exports": {
+    "types": "./dist/index.d.ts",
     "require": "./dist/index.js",
-    "import": "./dist/index.mjs",
-    "types": "./dist/index.d.ts"
+    "import": "./dist/index.mjs"
   },
   "dependencies": {
     "tar-fs": "^3.0.6"
