@@ -1,3 +1,12 @@
+interface PronunciationData {
+    phonemes: string[];
+    note?: string;
+}
+interface EntryData {
+    name: string;
+    pronunciations: PronunciationData[];
+    tags: string[];
+}
 declare class Entry {
     readonly name: string;
     readonly pronunciations: Pronunciation[];
@@ -5,14 +14,7 @@ declare class Entry {
     constructor(name: string, tags?: Iterable<string>);
     addPronunciation(pronunciation: string[], note?: string): Pronunciation;
     toString(): string;
-    toJSON(): {
-        name: string;
-        pronunciations: {
-            phonemes: string[];
-            note?: string;
-        }[];
-        tags: string[];
-    };
+    toJSON(): EntryData;
 }
 declare class Pronunciation {
     readonly entry: Entry;
@@ -20,10 +22,7 @@ declare class Pronunciation {
     readonly phonemes: Phoneme[];
     constructor(entry: Entry, phonemes: string[], note?: string | null);
     toString(): string;
-    toJSON(): {
-        phonemes: string[];
-        note?: string;
-    };
+    toJSON(): PronunciationData;
 }
 declare class Phoneme {
     readonly raw: string;
@@ -53,4 +52,4 @@ declare function getPhones(): Map<string, `${ArticulationManner}`>;
 declare function getSymbols(): string[];
 declare function getVP(): Map<string, Entry>;
 
-export { ArticulationManner, Entry, Phoneme, Pronunciation, getDict, getPhones, getSymbols, getVP };
+export { ArticulationManner, Entry, type EntryData, Phoneme, Pronunciation, type PronunciationData, getDict, getPhones, getSymbols, getVP };
