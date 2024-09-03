@@ -13,6 +13,7 @@ declare class Entry {
     readonly tags: Set<string>;
     constructor(name: string, tags?: Iterable<string>);
     addPronunciation(pronunciation: string[], note?: string): Pronunciation;
+    equals(other: Entry): boolean;
     toString(): string;
     toJSON(): EntryData;
 }
@@ -21,6 +22,7 @@ declare class Pronunciation {
     readonly note: string | null;
     readonly phonemes: Phoneme[];
     constructor(entry: Entry, phonemes: string[], note?: string | null);
+    equals(other: Pronunciation): boolean;
     toString(): string;
     toJSON(): PronunciationData;
 }
