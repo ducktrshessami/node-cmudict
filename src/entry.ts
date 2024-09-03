@@ -28,6 +28,10 @@ export class Entry {
         return newItem;
     }
 
+    equals(other: Entry): boolean {
+        return this.toString() === other.toString();
+    }
+
     toString(): string {
         if (this.tags && this.pronunciations.length) {
             const first = this.pronunciations[0].toString() + ` # ${[...this.tags.values()].join(", ")}`;
@@ -56,6 +60,10 @@ export class Pronunciation {
         readonly note: string | null = null
     ) {
         this.phonemes = phonemes.map(phoneme => new Phoneme(phoneme));
+    }
+
+    equals(other: Pronunciation): boolean {
+        return this.toString() === other.toString();
     }
 
     toString(): string {
