@@ -9,7 +9,7 @@ declare class Entry {
         name: string;
         pronunciations: {
             phonemes: string[];
-            note?: string | undefined;
+            note?: string;
         }[];
         tags: string[];
     };
@@ -22,7 +22,7 @@ declare class Pronunciation {
     toString(): string;
     toJSON(): {
         phonemes: string[];
-        note?: string | undefined;
+        note?: string;
     };
 }
 declare class Phoneme {
