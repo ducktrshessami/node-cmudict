@@ -54,7 +54,7 @@ export class Pronunciation {
     toJSON() {
         const json: {
             phonemes: string[];
-            note?: string
+            note?: string;
         } = { phonemes: this.phonemes.map(phoneme => phoneme.toString()) };
         if (this.note) {
             json.note = this.note;

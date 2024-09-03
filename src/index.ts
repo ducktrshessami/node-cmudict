@@ -33,5 +33,5 @@ export function getVP(): Map<string, Entry> {
     return readPronunciations("cmudict.vp", /^(?<name>[^A-Z\s]+)(?<note>[^\s()]+)?(?:\((?<index>\d+)\))? (?<phonemes>(?:[A-Z]+[0-2]?(?: |$))+)/gmi);
 }
 
-export { ArticulationManner, Entry };
 export { Phoneme, Pronunciation } from "./entry";
+export { ArticulationManner, Entry };
