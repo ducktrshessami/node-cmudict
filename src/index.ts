@@ -13,12 +13,12 @@ export function getDict(): Map<string, Entry> {
 /**
  * Maps phoneme to manner of articulation
  */
-export function getPhones(): Map<string, `${ArticulationManner}`> {
-    return new Map<string, `${ArticulationManner}`>(
+export function getPhones(): Map<string, ArticulationManner> {
+    return new Map<string, ArticulationManner>(
         mapIt(
             read("cmudict.phones")
                 .matchAll(/^(?<phoneme>[A-Z]+)\s+(?<manner>[A-Z]+)$/gmi),
-            match => [match[1], <`${ArticulationManner}`>match[2]]
+            match => [match[1], <ArticulationManner>match[2]]
         )
     );
 }
