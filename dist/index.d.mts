@@ -50,7 +50,7 @@ declare function getDict(): Map<string, Entry>;
 /**
  * Maps phoneme to manner of articulation
  */
-declare function getPhones(): Map<string, `${ArticulationManner}`>;
+declare function getPhones(): Map<string, ArticulationManner>;
 declare function getSymbols(): string[];
 declare function getVP(): Map<string, Entry>;
 
