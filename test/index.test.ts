@@ -1,16 +1,16 @@
-const assert = require("assert");
-const { readFileSync } = require("fs");
-const { join } = require("path");
-const cmudict = require("../dist");
+import { readFileSync } from "fs";
+import { join } from "path";
+import { beforeAll, describe, expect, it } from "vitest";
+import * as cmudict from "../";
 
-function lineCount(filename) {
+function lineCount(filename: string) {
     return readFileSync(join(__dirname, "../cmudict", filename), { encoding: "utf8" })
         .split("\n")
         .filter(line => line)
         .length;
 }
 
-function pronunciationCount(map) {
+function pronunciationCount(map: Map<string, cmudict.Entry>) {
     let pronunciations = 0;
     for (const entry of map.values()) {
         pronunciations += entry.pronunciations.length;
@@ -18,9 +18,12 @@ function pronunciationCount(map) {
     return pronunciations;
 }
 
-describe("CJS", function () {
-    let Dict, Phones, Symbols, VP;
-    before("reading all cmudict features", function () {
+describe("parsing", function () {
+    let Dict: Map<string, cmudict.Entry>;
+    let Phones: Map<string, cmudict.ArticulationManner>;
+    let Symbols: string[];
+    let VP: Map<string, cmudict.Entry>;
+    beforeAll(function () {
         Dict = cmudict.getDict();
         Phones = cmudict.getPhones();
         Symbols = cmudict.getSymbols();
@@ -28,25 +31,25 @@ describe("CJS", function () {
     });
 
     it("Dict covers all lines", function () {
-        assert.strictEqual(pronunciationCount(Dict), lineCount("cmudict.dict"));
+        expect(pronunciationCount(Dict)).toStrictEqual(lineCount("cmudict.dict"));
     });
 
     it("all phones' manners in ArticulationManner enum", function () {
         const manners = Object.values(cmudict.ArticulationManner);
         for (const manner of Phones.values()) {
-            assert(manners.includes(manner));
+            expect(manners).toContain(manner);
         }
     });
 
     it("Phones covers all lines", function () {
-        assert.strictEqual(Phones.size, lineCount("cmudict.phones"));
+        expect(Phones.size).toStrictEqual(lineCount("cmudict.phones"));
     });
 
     it("Symbols covers all lines", function () {
-        assert.strictEqual(Symbols.length, lineCount("cmudict.symbols"));
+        expect(Symbols.length).toStrictEqual(lineCount("cmudict.symbols"));
     });
 
     it("VP covers all lines", function () {
-        assert.strictEqual(pronunciationCount(VP), lineCount("cmudict.vp"));
+        expect(pronunciationCount(VP)).toStrictEqual(lineCount("cmudict.vp"));
     });
 });
