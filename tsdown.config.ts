@@ -10,7 +10,6 @@ export default defineConfig(options => {
         dts: !install,
         sourcemap: true,
         format: install ? "esm" : ["esm", "cjs"],
-        minifySyntax: true,
-        minifyWhitespace: true
+        minify: true
     };
 });
