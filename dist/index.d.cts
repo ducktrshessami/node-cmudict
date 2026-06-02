@@ -58,4 +58,4 @@ declare function getSymbols(): string[];
 declare function getVP(): Map<string, Entry>;
 //#endregion
 export { ArticulationManner, Entry, EntryData, Phoneme, Pronunciation, PronunciationData, getDict, getPhones, getSymbols, getVP };
-//# sourceMappingURL=index.d.mts.map
+//# sourceMappingURL=index.d.cts.map

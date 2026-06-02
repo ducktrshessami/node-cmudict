@@ -1,6 +1,7 @@
-import { readFileSync } from "fs";
-import { join } from "path";
-import { fileURLToPath } from "url";
+Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
+let fs = require("fs");
+let path = require("path");
+let url = require("url");
 //#region src/entry.ts
 var Entry = class {
 	name;
@@ -73,10 +74,10 @@ function getDirname() {
 	try {
 		return __dirname;
 	} catch {
-		return fileURLToPath(new URL("./", import.meta.url));
+		return (0, url.fileURLToPath)(new URL("./", require("url").pathToFileURL(__filename).href));
 	}
 }
-const CMUdictPath = join(getDirname(), "../cmudict");
+const CMUdictPath = (0, path.join)(getDirname(), "../cmudict");
 let ArticulationManner = /* @__PURE__ */ function(ArticulationManner) {
 	ArticulationManner["Stop"] = "stop";
 	ArticulationManner["Nasal"] = "nasal";
@@ -94,7 +95,7 @@ function mapIt(it, fn) {
 	return result;
 }
 function read(filename) {
-	return readFileSync(join(CMUdictPath, filename), { encoding: "utf8" });
+	return (0, fs.readFileSync)((0, path.join)(CMUdictPath, filename), { encoding: "utf8" });
 }
 function readPronunciations(filename, pattern) {
 	const entries = /* @__PURE__ */ new Map();
@@ -126,6 +127,13 @@ function getVP() {
 	return readPronunciations("cmudict.vp", /^(?<name>[^A-Z\s]+)(?<note>[^\s()]+)?(?:\((?<index>\d+)\))? (?<phonemes>(?:[A-Z]+[0-2]?(?: |$))+)/gim);
 }
 //#endregion
-export { ArticulationManner, Entry, Phoneme, Pronunciation, getDict, getPhones, getSymbols, getVP };
+exports.ArticulationManner = ArticulationManner;
+exports.Entry = Entry;
+exports.Phoneme = Phoneme;
+exports.Pronunciation = Pronunciation;
+exports.getDict = getDict;
+exports.getPhones = getPhones;
+exports.getSymbols = getSymbols;
+exports.getVP = getVP;
 
-//# sourceMappingURL=index.mjs.map
+//# sourceMappingURL=index.cjs.map
