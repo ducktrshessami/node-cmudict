@@ -1,6 +1,6 @@
 {
   "name": "node-cmudict",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "cmusphinx/cmudict wrapper",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
