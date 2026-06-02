@@ -9,9 +9,13 @@
   "license": "MIT",
   "scripts": {
     "postinstall": "node dist/install.mjs",
-    "build:main": "tsup src/index.ts",
-    "build:install": "tsup src/install.mts",
-    "build": "rm -rf dist/ && yarn build:main && yarn build:install",
+    "types": "tsc --noEmit",
+    "prebuild:main": "yarn types",
+    "build:main": "tsdown src/index.ts",
+    "prebuild:install": "yarn types",
+    "build:install": "tsdown src/install.mts",
+    "prebuild": "rm -rf dist/",
+    "build": "yarn build:main && yarn build:install",
     "pretest": "yarn build && yarn --immutable",
     "test": "vitest"
   },
@@ -19,18 +23,18 @@
     "node": ">=18.0.0"
   },
   "exports": {
-    "types": "./dist/index.d.ts",
-    "require": "./dist/index.js",
+    "types": "./dist/index.d.cts",
+    "require": "./dist/index.cjs",
     "import": "./dist/index.mjs"
   },
   "dependencies": {
     "tar-fs": "^3.1.2"
   },
   "devDependencies": {
-    "@types/node": "^25.3.3",
+    "@types/node": "^25.9.1",
     "@types/tar-fs": "^2.0.4",
-    "tsup": "^8.5.1",
-    "typescript": "^5.9.3",
-    "vitest": "^4.0.18"
+    "tsdown": "^0.22.1",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.8"
   }
 }
