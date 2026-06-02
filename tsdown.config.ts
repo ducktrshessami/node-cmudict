@@ -1,4 +1,4 @@
-import { defineConfig } from "tsup";
+import { defineConfig } from "tsdown";
 
 export default defineConfig(options => {
     if (!Array.isArray(options.entry)) {
@@ -6,6 +6,7 @@ export default defineConfig(options => {
     }
     const install = options.entry.includes("src/install.mts");
     return {
+        clean: false,
         dts: !install,
         sourcemap: true,
         format: install ? "esm" : ["esm", "cjs"],

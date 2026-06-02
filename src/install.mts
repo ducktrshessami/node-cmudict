@@ -3,8 +3,8 @@ import { pipeline } from "stream/promises";
 import { ReadableStream } from "stream/web";
 import { Headers, extract } from "tar-fs";
 import { createGunzip } from "zlib";
-import { InstallError } from "./error";
-import { CMUdictPath } from "./util";
+import { InstallError } from "./error.js";
+import { CMUdictPath } from "./util.js";
 
 const CMUdictURL = "https://api.github.com/repos/cmusphinx/cmudict/tarball/master";
 

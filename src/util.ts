@@ -41,11 +41,13 @@ export function read(filename: string): string {
 export function readPronunciations(filename: string, pattern: RegExp): Map<string, Entry> {
     const entries = new Map<string, Entry>();
     for (const match of read(filename).matchAll(pattern)) {
-        const entry = entries.get(match.groups!.name) ?? new Entry(match.groups!.name);
+        const name = match.groups!.name!;
+        const pronunciation = match.groups!.phonemes!.split(" ");
+        const entry = entries.get(name) ?? new Entry(name);
         match.groups!.tags
             ?.split(", ")
             .forEach(tag => entry.tags.add(tag));
-        entry.addPronunciation(match.groups!.phonemes.split(" "), match.groups!.note);
+        entry.addPronunciation(pronunciation, match.groups!.note);
         entries.set(entry.name, entry);
     }
     return entries;

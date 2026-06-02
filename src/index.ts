@@ -18,7 +18,7 @@ export function getPhones(): Map<string, ArticulationManner> {
         mapIt(
             read("cmudict.phones")
                 .matchAll(/^(?<phoneme>[A-Z]+)\s+(?<manner>[A-Z]+)$/gmi),
-            match => [match[1], <ArticulationManner>match[2]]
+            match => [match[1]!, <ArticulationManner>match[2]]
         )
     );
 }

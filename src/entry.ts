@@ -34,7 +34,7 @@ export class Entry {
 
     toString(): string {
         if (this.tags && this.pronunciations.length) {
-            const first = this.pronunciations[0].toString() + ` # ${[...this.tags.values()].join(", ")}`;
+            const first = this.pronunciations[0]!.toString() + ` # ${[...this.tags.values()].join(", ")}`;
             return [first, ...this.pronunciations.slice(1)].join("\n");
         }
         else {
@@ -86,7 +86,7 @@ export class Phoneme {
 
     constructor(readonly raw: string) {
         const match = raw.match(Phoneme.Pattern)!;
-        this.phoneme = match.groups!.phoneme;
+        this.phoneme = match.groups!.phoneme!;
         this.stress = match.groups!.stress ? parseInt(match.groups!.stress) : null;
     }
 
